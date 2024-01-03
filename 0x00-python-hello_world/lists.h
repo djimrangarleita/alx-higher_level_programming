@@ -36,5 +36,4 @@ int check_cycle(listint_t *list);
 int insert_ptr(void *newptr, listptr_t **head);
 void free_tmp_list(listptr_t *head);
 
-
 #endif /* LISTS_H */
