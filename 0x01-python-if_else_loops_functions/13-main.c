@@ -14,10 +14,11 @@ int main(void)
 
     head = NULL;
 //    add_nodeint_end(&head, 1024);
-    add_nodeint_end(&head, 402);
-    add_nodeint_end(&head, 98);
-  //  add_nodeint_end(&head, 4);
-    //add_nodeint_end(&head, 3);
+//    add_nodeint_end(&head, 402);
+  //  add_nodeint_end(&head, 98);
+    //add_nodeint_end(&head, 4);
+    add_nodeint_end(&head, 2);
+    add_nodeint_end(&head, 3);
     //add_nodeint_end(&head, 2);
     //add_nodeint_end(&head, 1);
     //add_nodeint_end(&head, 0);
@@ -25,7 +26,10 @@ int main(void)
 
     printf("-----------------\n");
 
-    insert_node(&head, 27);
+    insert_node(&head, 98);
+    insert_node(&head, 98);
+    insert_node(&head, 500);
+    insert_node(&head, -7);
 
     print_listint(head);
 

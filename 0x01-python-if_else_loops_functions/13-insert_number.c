@@ -12,11 +12,11 @@ listint_t *insert_node(listint_t **head, int number)
 	listint_t *newnode, *tmp;
 
 	tmp = *head;
-	if (!tmp || (!tmp->next && tmp->n < number))
+	if (!tmp || (!tmp->next && tmp->n <= number))
 	{
 		return (add_nodeint_end(head, number));
 	}
-	else if (!tmp->next && tmp->n > number)
+	else if ((!tmp->next && tmp->n >= number) || tmp->n >= number)
 	{
 		return (add_nodeint_head(head, number));
 	}
@@ -34,8 +34,8 @@ listint_t *insert_node(listint_t **head, int number)
 			tmp->next = newnode;
 			break;
 		}
-		else if ((tmp->n < number && tmp->next->n > number) ||
-				(tmp->n > number && tmp->next->n < number))
+		else if ((tmp->n <= number && tmp->next->n >= number) ||
+				(tmp->n >= number && tmp->next->n <= number))
 		{
 			newnode->next = tmp->next;
 			tmp->next = newnode;
