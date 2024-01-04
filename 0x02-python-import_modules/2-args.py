@@ -4,6 +4,6 @@ if __name__ == "__main__":
     argc = len(argv)
     print("{:d} {:s}".format((argc - 1), "arguments:"
           if argc > 2
-          else ("argument:" if argc == 2 else "argument.")))
+          else ("argument:" if argc == 2 else "arguments.")))
     for i in range(1, argc):
         print("{:d}: {:s}".format(i, argv[i]))
