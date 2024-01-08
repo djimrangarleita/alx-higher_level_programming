@@ -8,14 +8,14 @@
 void print_python_list_info(PyObject *p)
 {
 	PyListObject *lp;
-	int obsize, i;
+	int listsize, i;
 
 	lp = (PyListObject *)p;
-	obsize = lp->ob_base.ob_size;
+	listsize = lp->ob_base.ob_size;
 
-	printf("[*] Size of the Python List = %d\n", obsize);
+	printf("[*] Size of the Python List = %d\n", listsize);
 	printf("[*] Allocated = %ld\n", lp->allocated);
-	for (i = 0; i < obsize; i++)
+	for (i = 0; i < listsize; i++)
 	{
 		printf("Element %d: %s\n", i, lp->ob_item[i]->ob_type->tp_name);
 	}
