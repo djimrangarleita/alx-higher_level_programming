@@ -8,10 +8,12 @@
 int is_palindrome(listint_t **head)
 {
 	int len = list_len(*head);
+	int *array;
 
 	if (len)
 	{
-		return compare_and_free(list_to_array(*head, len), len);
+		array = list_to_array(*head, len);
+		return (compare_and_free(array, len));
 	}
 
 	return (1);
@@ -45,16 +47,13 @@ int list_len(listint_t *h)
  */
 int *list_to_array(listint_t *head, int len)
 {
-	int *array;
-	int i;
-	listint_t *tmp;
+	int i = 0;
+	listint_t *tmp = head;
+	int *array = malloc(sizeof(array) * len);
 
-	array = malloc(sizeof(array) * len);
 	if (!array)
 		return (0);
 
-	tmp = head;
-	i = 0;
 	while (tmp != NULL)
 	{
 		array[i++] = tmp->n;
@@ -73,7 +72,7 @@ int *list_to_array(listint_t *head, int len)
 int compare_and_free(int *array, int len)
 {
 	int i, j;
-	
+
 	for (i = 0, j = len - 1; i < len / 2; i++, j--)
 	{
 		if (array[i] != array[j])
@@ -83,5 +82,6 @@ int compare_and_free(int *array, int len)
 		}
 	}
 	free(array);
+
 	return (1);
 }
