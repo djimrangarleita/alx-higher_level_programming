@@ -67,7 +67,6 @@ void free_listint(listint_t *head)
 
     while (head != NULL)
     {
-	printf("Hey there\n");
         current = head;
         head = head->next;
         free(current);
