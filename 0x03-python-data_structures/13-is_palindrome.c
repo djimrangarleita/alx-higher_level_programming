@@ -7,15 +7,13 @@
  */
 int is_palindrome(listint_t **head)
 {
-	int len = list_len(*head);
-	int *array;
+	int *arr, len = list_len(*head);
 
 	if (len)
 	{
-		array = list_to_array(head, len);
-		return (compare_and_free(array, len));
+		arr = list_to_array(*head, len);
+		return (compare_and_free(arr, len));
 	}
-
 	return (1);
 }
 
@@ -28,64 +26,55 @@ int list_len(listint_t *h)
 {
 	int count = 0;
 
-	if (!h)
-		return (0);
-
 	while (h != NULL)
 	{
 		count++;
 		h = h->next;
 	}
-
 	return (count);
 }
+
 /**
- * list_to_array - convert a singly linked list to an array
+ * list_to_array - convert a list to an array
  * @head: head of list
  * @len: length of the list
  * Return: ptr to ints
  */
-int *list_to_array(listint_t **head, int len)
+int *list_to_array(listint_t *head, int len)
 {
-	int i;
-	listint_t *tmp;
-	int *array = malloc(sizeof(array) * len);
+	int i, *arr = malloc(sizeof(arr) * len);
 
-	if (!array)
+	if (!arr)
 		return (0);
-
 	i = 0;
-	while (*head != NULL)
+	while (head != NULL)
 	{
-		tmp = *head;
-		array[i++] = tmp->n;
-		*head = tmp->next;
-		free(tmp);
+		arr[i++] = head->n;
+		head = head->next;
 	}
-	free(*head);
-
-	return (array);
+	return (arr);
 }
 
 /**
  * compare_and_free - compare elts of array and free
- * @array: ptr to list of array of int
+ * @arr: ptr to list of array of int
  * @len: length of list
  * Return: 1 if list palindrome, 0 otherwise
  */
-int compare_and_free(int *array, int len)
+int compare_and_free(int *arr, int len)
 {
 	int i, j;
 
+	if (!arr)
+		return (0);
 	for (i = 0, j = len - 1; i < len / 2; i++, j--)
 	{
-		if (array[i] != array[j])
+		if (arr[i] != arr[j])
 		{
-			free(array);
+			free(arr);
 			return (0);
 		}
 	}
-	free(array);
-
+	free(arr);
 	return (1);
 }
