@@ -1,4 +1,5 @@
 #include "Python.h"
+#include <stdio.h>
 
 /**
  * print_python_list_info - print info about python lists
@@ -6,5 +7,8 @@
  */
 void print_python_list_info(PyObject *p)
 {
-	p = (PyObject *)p;
+	PyListObject *lp;
+
+	lp = (PyListObject *)p;
+	printf("[*] Allocated = %ld\n", lp->allocated);
 }
