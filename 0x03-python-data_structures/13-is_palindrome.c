@@ -1,13 +1,21 @@
 #include "lists.h"
 
 /**
- * is_palindrome - checked if the l list of int is palindrome
- * @head: head of the list
+ * is_palindrome - check if list is palindrome
+ * @head: head of list
  * Return: 0 if list isn't palindrome, 1 otherwise
  */
 int is_palindrome(listint_t **head)
 {
-	int *arr, len = list_len(*head);
+	int *arr, len = 0;
+	listint_t *h;
+
+	h = *head;
+	while (h != NULL)
+	{
+		len++;
+		h = h->next;
+	}
 
 	if (len)
 	{
@@ -18,26 +26,9 @@ int is_palindrome(listint_t **head)
 }
 
 /**
- * list_len - caculate and return len of list
- * @h: ptr to the head of the list
- * Return: length of the list
- */
-int list_len(listint_t *h)
-{
-	int count = 0;
-
-	while (h != NULL)
-	{
-		count++;
-		h = h->next;
-	}
-	return (count);
-}
-
-/**
- * list_to_array - convert a list to an array
+ * list_to_array - convert list to array
  * @head: head of list
- * @len: length of the list
+ * @len: length of list
  * Return: ptr to ints
  */
 int *list_to_array(listint_t *head, int len)
