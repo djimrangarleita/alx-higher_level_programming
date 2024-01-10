@@ -25,4 +25,7 @@ def roman_to_int(roman_string):
         else:
             filtered.append(ntable[i])
         i += 1
-    return reduce(lambda x, y: x + y, filtered)
+    res = 0
+    for i in filtered:
+        res += i
+    return res
