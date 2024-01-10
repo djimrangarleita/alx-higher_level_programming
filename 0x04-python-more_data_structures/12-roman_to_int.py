@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-from functools import reduce
 
 
 def roman_to_int(roman_string):
