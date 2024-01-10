@@ -41,7 +41,7 @@ void print_python_bytes(PyObject *p)
 
 	if (!pbytes || !PyBytes_Check(pbytes))
 	{
-		dprintf(STDERR_FILENO, "  [ERROR] Invalid Bytes Object\n");
+		fprintf(stderr, "  [ERROR] Invalid Bytes Object\n");
 	}
 	else
 	{
