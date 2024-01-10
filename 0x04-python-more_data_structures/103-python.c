@@ -38,6 +38,7 @@ void print_python_bytes(PyObject *p)
 	int obsize, i;
 
 	pbytes = (PyBytesObject *)p;
+	printf("[.] bytes object info\n");
 
 	if (!pbytes || !PyBytes_Check(pbytes))
 	{
@@ -46,7 +47,6 @@ void print_python_bytes(PyObject *p)
 	else
 	{
 		obsize = pbytes->ob_base.ob_size;
-		printf("[.] bytes object info\n");
 		printf("  size: %d\n", obsize);
 		printf("  trying string: %s\n", pbytes->ob_sval);
 		printf("  first %d bytes:", obsize < 10 ? obsize + 1 : 10);
