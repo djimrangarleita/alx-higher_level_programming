@@ -42,18 +42,19 @@ void print_python_bytes(PyObject *p)
 	if (!pbytes || !PyBytes_Check(pbytes))
 	{
 		dprintf(STDERR_FILENO, "  [ERROR] Invalid Bytes Object\n");
-		return;
 	}
-
-	obsize = pbytes->ob_base.ob_size;
-	printf("[.] bytes object info\n");
-	printf("  size: %d\n", obsize);
-	printf("  trying string: %s\n", pbytes->ob_sval);
-	printf("  first %d bytes:", obsize < 10 ? obsize + 1 : 10);
-
-	for (i = 0; i < obsize + 1 && i < 10; i++)
+	else
 	{
-		printf(" %02x", pbytes->ob_sval[i] & 0xff);
+		obsize = pbytes->ob_base.ob_size;
+		printf("[.] bytes object info\n");
+		printf("  size: %d\n", obsize);
+		printf("  trying string: %s\n", pbytes->ob_sval);
+		printf("  first %d bytes:", obsize < 10 ? obsize + 1 : 10);
+
+		for (i = 0; i < obsize + 1 && i < 10; i++)
+		{
+			printf(" %02x", pbytes->ob_sval[i] & 0xff);
+		}
+		printf("\n");
 	}
-	printf("\n");
 }
