@@ -84,3 +84,12 @@ print();
 print();
 
 lib.print_python_bytes(l);  #bytes
+
+print();
+print();
+print();
+
+
+l = b"\0"
+lib.print_python_bytes(l)    #bytes
+lib.print_python_list(l)    #list

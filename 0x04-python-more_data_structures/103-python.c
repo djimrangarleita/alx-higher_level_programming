@@ -14,17 +14,20 @@ void print_python_list(PyObject *p)
 	const char *obtype;
 
 	lp = (PyListObject *)p;
-	listsize = lp->ob_base.ob_size;
-
-	printf("[*] Python list info\n");
-	printf("[*] Size of the Python List = %d\n", listsize);
-	printf("[*] Allocated = %ld\n", lp->allocated);
-	for (i = 0; i < listsize; i++)
+	if (lp && PyList_Check(lp))
 	{
-		obtype = lp->ob_item[i]->ob_type->tp_name;
-		printf("Element %d: %s\n", i, obtype);
-		if (strcmp(obtype, "bytes") == 0)
-			print_python_bytes(lp->ob_item[i]);
+		listsize = lp->ob_base.ob_size;
+
+		printf("[*] Python list info\n");
+		printf("[*] Size of the Python List = %d\n", listsize);
+		printf("[*] Allocated = %ld\n", lp->allocated);
+		for (i = 0; i < listsize; i++)
+		{
+			obtype = lp->ob_item[i]->ob_type->tp_name;
+			printf("Element %d: %s\n", i, obtype);
+			if (strcmp(obtype, "bytes") == 0)
+				print_python_bytes(lp->ob_item[i]);
+		}
 	}
 }
 
@@ -37,8 +40,8 @@ void print_python_bytes(PyObject *p)
 	PyBytesObject *pbytes;
 	int obsize, i;
 
-	pbytes = (PyBytesObject *)p;
 	printf("[.] bytes object info\n");
+	pbytes = (PyBytesObject *)p;
 
 	if (!pbytes || !PyBytes_Check(pbytes))
 	{
