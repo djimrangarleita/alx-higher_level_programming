@@ -5,7 +5,7 @@ def safe_print_integer(value):
     has_print = True
     try:
         print("{:d}".format(value))
-    except (ValueError):
+    except (ValueError, TypeError):
         has_print = False
 
     return (has_print)
