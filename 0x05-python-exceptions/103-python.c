@@ -89,6 +89,5 @@ void print_python_float(PyObject *p)
 		printf("  [ERROR] Invalid Float Object\n");
 		return;
 	}
-	PyFloat_GetMax();
 	printf("  value %f and %d\n", pfloat->ob_fval);
 }
