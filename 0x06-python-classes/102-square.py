@@ -28,3 +28,7 @@ class Square:
     def area(self):
         """Compute and return the area of a square"""
         return self.__size ** 2
+
+    def __cmp__(self, other):
+        """Compare 2 squares"""
+        return cmp(self.area, other.area)
