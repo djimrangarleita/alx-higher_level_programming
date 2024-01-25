@@ -32,10 +32,12 @@ class Square:
 
     @position.setter
     def position(self, value):
-        """"""
+        """Check and set the position"""
         if len(value) != 2:
             raise TypeError("position must be a tuple of 2 positive integers")
         if type(value[0]) is not int or type(value[1]) is not int:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        if value[0] < 0 or value[1] < 0:
             raise TypeError("position must be a tuple of 2 positive integers")
         self.__position = value
 
@@ -56,7 +58,18 @@ class Square:
                 print("#", end="")
             print("")
 
-
     def __repr__(self):
-        self.my_print()
-        return ""
+        str_arr = ''
+        """Print a square"""
+        if self.size == 0:
+            return ""
+        for h in range(self.position[1]):
+            str_arr += '\n'
+        for i in range(self.size):
+            if self.position[0]:
+                str_arr += " " * self.position[0]
+            for j in range(self.size):
+                str_arr += "#"
+            if i < self.size - 1:
+                str_arr += '\n'
+        return str_arr
