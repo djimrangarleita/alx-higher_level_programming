@@ -10,6 +10,7 @@ class Node:
     """Node class that can create a node for a singly linked list"""
 
     def __init__(self, data, next_node=None):
+        """Init a node"""
         self.__data = data
         self.__next_node = next_node
 
