@@ -27,8 +27,34 @@ class Square:
 
     def area(self):
         """Compute and return the area of a square"""
-        return self.__size ** 2
+        return self.size ** 2
 
-    def __cmp__(self, other):
+    def __eq__(self, other):
         """Compare 2 squares"""
-        return cmp(self.area, other.area)
+        if not isinstance(other, Square):
+            raise NotImplemented
+        return self.size == other.size
+
+    def __lt__(self, other):
+        """Compare 2 squares, less than"""
+        if not isinstance(other, Square):
+            raise NotImplemented
+        return self.size < other.size
+
+    def __le__(self, other):
+        """Compare 2 squares, less than or equal"""
+        if not isinstance(other, Square):
+            raise NotImplemented
+        return self.size <= other.size
+
+    def __gt__(self, other):
+        """Compare 2 squares, greater than"""
+        if not isinstance(other, Square):
+            raise NotImplemented
+        return self.size > other.size
+
+    def __ge__(self, other):
+        """Compare 2 squares, greater than or equal"""
+        if not isinstance(other, Square):
+            raise NotImplemented
+        return self.size >= other.size
