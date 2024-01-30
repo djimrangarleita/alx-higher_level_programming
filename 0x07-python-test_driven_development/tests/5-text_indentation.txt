@@ -1,0 +1,25 @@
+"""
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+>>> text_indentation("")
+
+>>> text_indentation(50)
+Traceback (most recent call last):
+	...
+TypeError: text must be a string
+
+>>> text_indentation(["It is important to create a new test case", "case", "t"])
+Traceback (most recent call last):
+	...
+TypeError: text must be a string
+
+>>> text_indentation("""Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+... Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? """)
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+<BLANKLINE>
+Quonam modo?
+<BLANKLINE>
+Utrum igitur tibi litteram videor an totas paginas commovere?
+<BLANKLINE>
+
+"""
