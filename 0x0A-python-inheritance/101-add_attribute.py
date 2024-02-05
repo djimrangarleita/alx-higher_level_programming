@@ -4,6 +4,6 @@
 
 def add_attribute(obj, name, attr):
     """Function that adds new attr to an object"""
-    if (obj.__class__.__module__ == 'builtins'):
-        raise TypeError('can\'t add new attribute')
-    obj.name = attr
+    if not '__dict__' in dir(obj):
+        raise TypeError("can't add new attribute")
+    setattr(obj, name, attr)
