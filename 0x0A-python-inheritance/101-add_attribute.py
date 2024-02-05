@@ -4,6 +4,6 @@
 
 def add_attribute(obj, name, attr):
     """Function that adds new attr to an object"""
-    if not '__dict__' in dir(obj):
+    if '__dict__' not in dir(obj):
         raise TypeError("can't add new attribute")
     setattr(obj, name, attr)
