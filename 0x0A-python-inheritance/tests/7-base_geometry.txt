@@ -48,4 +48,14 @@ Traceback (most recent call last):
 	...
 TypeError: size must be an integer
 
+>>> bg.integer_validator(4, 4)
+Traceback (most recent call last):
+	...
+TypeError: Argument 1 must be of type 'str'
+
+>>> bg.integer_validator(['elt', 'new'], 12)
+Traceback (most recent call last):
+	...
+TypeError: Argument 1 must be of type 'str'
+
 """

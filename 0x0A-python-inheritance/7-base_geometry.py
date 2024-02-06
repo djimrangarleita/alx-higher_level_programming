@@ -12,5 +12,7 @@ class BaseGeometry:
         """Validate an integer for safety"""
         if type(value) is not int:
             raise TypeError("{:s} must be an integer".format(name))
+        if type(name) is not str:
+            raise TypeError("Argument 1 must be of type 'str'")
         if value <= 0:
             raise ValueError("{:s} must be greater than 0".format(name))
