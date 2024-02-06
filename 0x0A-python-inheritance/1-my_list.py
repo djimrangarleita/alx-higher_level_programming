@@ -8,7 +8,7 @@ class MyList(list):
     """A class that inherit from list and define 1 method"""
     def __init__(self):
         """Initialize a list object"""
-        list.__init__(self);
+        list.__init__(self)
 
     def print_sorted(self):
         """Print list sorted in asc"""
