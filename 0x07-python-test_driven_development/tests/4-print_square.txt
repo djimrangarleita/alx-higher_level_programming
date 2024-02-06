@@ -41,6 +41,5 @@ ValueError: size must be >= 0
 ######
 
 >>> print_square(0)
-<BLANKLINE>
 
 """
