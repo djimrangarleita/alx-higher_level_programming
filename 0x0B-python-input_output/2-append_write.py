@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Module used to write to a file"""
 
+
 def append_write(filename="", text=""):
     """Append text to a file"""
     nchars = 0
