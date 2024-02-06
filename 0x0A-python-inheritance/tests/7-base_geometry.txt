@@ -3,6 +3,12 @@
 
 >>> bg = BaseGeometry()
 
+>>> 'area' in dir(bg)
+True
+
+>>> 'integer_validator' in dir(bg)
+True
+
 >>> bg.area()
 Traceback (most recent call last):
 	...
@@ -31,5 +37,15 @@ ValueError: size must be greater than 0
 >>> bg.integer_validator('width', 12)
 
 >>> bg.integer_validator('height', 22)
+
+>>> bg.area()
+Traceback (most recent call last):
+	...
+Exception: area() is not implemented
+
+>>> bg.integer_validator('size', [4.0, 2, 0, 'I am'])
+Traceback (most recent call last):
+	...
+TypeError: size must be an integer
 
 """

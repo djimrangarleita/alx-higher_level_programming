@@ -21,3 +21,18 @@ try:
 except Exception as e:
     print("[{}] {}".format(e.__class__.__name__, e))
 
+try:
+    bg.integer_validator(13, 4)
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))
+
+try:
+    bg.integer_validator([], 40)
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))
+
+try:
+    bg.integer_validator("new", [4, 2, 3, 4])
+except Exception as e:
+    print("[{}] {}".format(e.__class__.__name__, e))
+
