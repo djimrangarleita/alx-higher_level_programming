@@ -1,8 +1,6 @@
 #!/usr/bin/python3
-import json
-
-
 """Module used to convert to object from json"""
+import json
 
 
 def from_json_string(my_str):

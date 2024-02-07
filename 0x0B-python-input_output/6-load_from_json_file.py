@@ -1,8 +1,6 @@
 #!/usr/bin/python3
-import json
-
-
 """Module used to convert from/to json"""
+import json
 
 
 def load_from_json_file(filename):
