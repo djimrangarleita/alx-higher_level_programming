@@ -12,11 +12,13 @@ def get_stdin_data():
             i += 1
             inputs.append(line.split())
             if i == 10:
+                print("Lines read: {:d}".format(len(inputs)))
                 print_metrics(compute_metrics(inputs))
                 inputs = []
                 i = 0
     except KeyboardInterrupt:
         print_metrics(compute_metrics(inputs))
+        raise
 
 
 def compute_metrics(list_of_inputs):
