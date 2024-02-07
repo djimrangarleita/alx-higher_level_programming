@@ -10,6 +10,9 @@ class Student:
         self.last_name = last_name
         self.age = age
 
-    def to_json(self):
+    def to_json(self, attrs=None):
         """This func returns a dict description of an object"""
+        if attrs is not None:
+            return {key: getattr(self, key) for key in attrs
+                    if key in list(self.__dict__)}
         return self.__dict__
