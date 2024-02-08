@@ -4,7 +4,16 @@
 
 def pascal_triangle(n):
     """Pascal triangle function"""
-    result = []
-    for i in range(n):
-        result.append([int(x) for x in str(11**i)])
+    if n <= 0:
+        return []
+
+    result = [[1]]
+    for i in range(n - 1):
+        lastrow = result[-1]
+        tmp = [0] + lastrow + [0]
+        currow = []
+        for j in range(len(lastrow) + 1):
+            currow.append(tmp[j] + tmp[j + 1])
+        result.append(currow)
+
     return result
