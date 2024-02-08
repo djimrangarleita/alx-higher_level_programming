@@ -10,15 +10,12 @@ def get_stdin_data():
     try:
         for line in sys.stdin:
             i += 1
-            with open('stats.txt', 'a') as f:
-                f.write(line)
-                if i == 10:
-                    f.write('\n--------------------------\n\n')
             inputs.append(line.split())
-            if i == 10:
+            if i == 10 or line is None:
                 print_metrics(compute_metrics(inputs))
-                inputs = []
                 i = 0
+        else:
+            print_metrics(compute_metrics(inputs))
     except KeyboardInterrupt:
         print_metrics(compute_metrics(inputs))
         raise
