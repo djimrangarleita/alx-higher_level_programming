@@ -29,10 +29,10 @@ def compute_metrics(list_of_inputs):
     """This function is called to compute values read from stdin"""
     metrics = {}
     for line in list_of_inputs:
-        if len(line) != 9:
+        if len(line) < 7:
             continue
-        metrics['file_size'] = metrics.get('file_size', 0) + int(line[8])
-        metrics[line[7]] = metrics.get(line[7], 0) + 1
+        metrics['file_size'] = metrics.get('file_size', 0) + int(line[-1])
+        metrics[line[-2]] = metrics.get(line[-2], 0) + 1
     return metrics
 
 
