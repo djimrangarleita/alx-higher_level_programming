@@ -1,1 +1,8 @@
-Nop, nothing here Really nothing
+At Holberton School,
+"Python is cool!"
+Python is really important,
+But it can be very hard if:
+"Python is cool!"
+- You don't get all Pythonic tricks
+"Python is cool!"
+- You don't have strong C knowledge.
