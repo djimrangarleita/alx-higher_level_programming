@@ -37,11 +37,13 @@ def compute_metrics(list_of_inputs):
 
 
 def print_metrics(metrics):
+    valid_keys = ['200', '301', '400', '401', '403', '404', '405', '500']
     """This function prints metrics to stdout"""
     if metrics.get('file_size'):
         print("{:s}: {:d}".format('File size', metrics.pop('file_size')))
         for key in sorted(metrics.keys()):
-            print("{:s}: {:d}".format(key, metrics.get(key)))
+            if key in valid_keys:
+                print("{:s}: {:d}".format(key, metrics.get(key)))
 
 
 get_stdin_data()
