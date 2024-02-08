@@ -15,7 +15,11 @@ def get_stdin_data():
                 print_metrics(compute_metrics(inputs))
                 i = 0
         else:
-            print_metrics(compute_metrics(inputs))
+            if i != 0:
+                print_metrics(compute_metrics(inputs))
+            elif i == 0 and not inputs:
+                print("File size: 0")
+
     except KeyboardInterrupt:
         print_metrics(compute_metrics(inputs))
         raise
@@ -25,6 +29,8 @@ def compute_metrics(list_of_inputs):
     """This function is called to compute values read from stdin"""
     metrics = {}
     for line in list_of_inputs:
+        if len(line) != 9:
+            continue
         metrics['file_size'] = metrics.get('file_size', 0) + int(line[8])
         metrics[line[7]] = metrics.get(line[7], 0) + 1
     return metrics
