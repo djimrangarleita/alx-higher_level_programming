@@ -79,3 +79,21 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError):
             Rectangle(10, 5, 1, -1)
         self.assertEqual(Rectangle(10, 4, 2, 0).y, 0)
+
+    def test_area_of_rectangle(self):
+        """Test that area function works properly"""
+        rec1 = Rectangle(10, 3)
+        rec2 = Rectangle(5, 2)
+        self.assertEqual(rec1.area(), 30)
+        self.assertEqual(rec2.area(), 10)
+
+    def test_rec_is_displayed_according_to_dimension(self):
+        # please implement me
+        pass
+
+    def test_str_function_for_rectangle(self):
+        """Test the string representation of a rectangle"""
+        rec1 = Rectangle(4, 6, 2, 1, 12)
+        rec2 = Rectangle(5, 5, 1, 0, 17)
+        self.assertEqual(str(rec1), '[Rectangle] (12) 2/1 - 4/6')
+        self.assertEqual(str(rec2), '[Rectangle] (17) 1/0 - 5/5')
