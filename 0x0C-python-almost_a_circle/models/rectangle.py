@@ -98,8 +98,17 @@ class Rectangle(base.Base):
 
     def update(self, *args, **kwargs):
         """Update the current rectangle with new attr values"""
-        # Please implement me
-        keys = self.__dict__
-        print(keys)
-        for i, val in enumerate(args):
-            print(val)
+        keys = ['id', 'width', 'height', 'x', 'y']
+        if args:
+            if len(args) > len(keys):
+                raise ValueError('too many values to unpack')
+            for i, arg in enumerate(args):
+                setattr(self, keys[i], arg)
+        else:
+            for key, arg in kwargs.items():
+                setattr(self, key, arg)
+
+    def to_dictionary(self):
+        """Return the dict representation of a rectangle"""
+        keys = ['id', 'width', 'height', 'x', 'y']
+        return {key: getattr(self, key) for key in keys}

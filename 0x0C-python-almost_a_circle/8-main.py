@@ -18,3 +18,7 @@ if __name__ == "__main__":
 
     r1.update(x=1, height=2, y=3, width=4)
     print(r1)
+
+    args = [12, 16, 5]
+    r1.update(*args, x=1, height=2, y=3, width=4)
+    print(r1)
