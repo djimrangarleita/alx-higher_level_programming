@@ -45,7 +45,28 @@ class Base:
 
     @staticmethod
     def from_json_string(json_string):
-        """Return a dictionary representation of a json string"""
+        """Return a list of dictionary representations of a json string"""
         if not json_string:
             return []
         return json.loads(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """Create new instance of class cls"""
+        new_instance = cls(10, 10)
+        new_instance.update(**dictionary)
+        return new_instance
+
+    @classmethod
+    def load_from_file(cls):
+        """This method creates new instances from file data"""
+        filename = cls.__name__ + '.json'
+        try:
+            with open(filename, 'r', encoding='utf-8') as f:
+                list_objs = cls.from_json_string(f.read())
+                list_instances = []
+                for obj in list_objs:
+                    list_instances.append(cls.create(**obj))
+                return list_instances
+        except FileNotFoundError:
+            return []
