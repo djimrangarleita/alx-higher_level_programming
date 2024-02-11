@@ -3,6 +3,7 @@
 Module for the class Base, used to manage all the ids this class
 is used by all other classes in the project
 """
+import json
 
 
 class Base:
@@ -22,3 +23,29 @@ class Base:
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
+
+    @staticmethod
+    def to_json_string(list_dictionaries):
+        """Return the json string representation of the args list_dictionaries"""
+        if list_dictionaries:
+            return json.dumps(list_dictionaries)
+        return "[]"
+
+    @classmethod
+    def save_to_file(cls, list_objs):
+        """List of instances of base type"""
+        filename = cls.__name__ + '.json'
+        list_dicts = []
+        for obj in list_objs:
+            list_dicts.append(cls.to_dictionary(obj))
+
+        json_data = cls.to_json_string(list_dicts)
+        with open(filename, 'w', encoding='utf-8') as f:
+            f.write(json_data if list_objs else '')
+
+    @staticmethod
+    def from_json_string(json_string):
+        """Return a dictionary representation of a json string"""
+        if not json_string:
+            return []
+        return json.loads(json_string)

@@ -6,7 +6,7 @@ from models.base import Base
 import unittest
 
 
-class TestBaseClass(unittest.TestCase):
+class TestBase(unittest.TestCase):
     """Test suite for base class"""
 
     def test_instantiation_with_id(self):
@@ -29,3 +29,31 @@ class TestBaseClass(unittest.TestCase):
         self.assertEqual(base1.id, 1)
         self.assertEqual(base2.id, 2)
         self.assertEqual(base3.id, 3)
+
+    def test_return_type_of_to_json_string_method(self):
+        """Test that the static method to_json_string works properly"""
+        json_str = Base.to_json_string([])
+        self.assertIsInstance(json_str, str)
+        json_str = Base.to_json_string(None)
+        self.assertIsInstance(json_str, str)
+        json_str = Base.to_json_string([{'id': 89, 'width': 25}])
+        self.assertIsInstance(json_str, str)
+
+    def test_return_value_of_to_json_string_method(self):
+        """Test that the to_json_string method returns the right json data"""
+        e_str = Base.to_json_string([])
+        n_str = Base.to_json_string(None)
+        json_str = Base.to_json_string([{'id': 89, 'width': 25}])
+        self.assertEqual(e_str, "[]")
+        self.assertEqual(n_str, "[]")
+        self.assertEqual(json_str, '[{"id": 89, "width": 25}]')
+
+    def test_save_to_file_class_method(self):
+        """Test that a json file is created"""
+        pass
+
+    def test_from_json_string_return_type(self):
+        """Test that the method can return a list of valid dicts
+        Todo: *please implement me
+        """
+        pass
