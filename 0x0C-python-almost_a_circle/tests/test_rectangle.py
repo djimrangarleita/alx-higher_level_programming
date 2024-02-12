@@ -5,6 +5,7 @@ Module used to test the rectangle class
 from models.rectangle import Rectangle
 import unittest
 
+
 class TestRectangle(unittest.TestCase):
     """Test suite for the Rectangle class"""
 
@@ -113,13 +114,13 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(rec1.y, 5)
 
     def test_update_with_more_than_5_args_fail(self):
-        """If we call update with more than 5 args it will raise an exception"""
+        """If we update with more than 5 args it will raise an exception"""
         rec = Rectangle(12, 5)
         with self.assertRaises(ValueError):
             rec.update(89, 15, 7, 0, 0, 8)
 
     def test_update_args_with_wrong_type_or_val_fail(self):
-        """If we call update with more than 5 args it will raise an exception"""
+        """Raise exception if update called with wrong args"""
         rec = Rectangle(12, 5)
         with self.assertRaises(TypeError):
             rec.update(89, '15', 7, 0, 0)

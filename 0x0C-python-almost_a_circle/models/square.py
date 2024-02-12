@@ -11,8 +11,11 @@ class Square(rectangle.Rectangle):
         self.size = size
 
     def __str__(self):
-        return "[Square] ({:d}) {:d}/{:d} - {:d}".format(self.id, self.x, self.y,
-                self.width)
+        return "[Square] ({:d}) {:d}/{:d} - {:d}".format(
+                                                    self.id,
+                                                    self.x,
+                                                    self.y,
+                                                    self.width)
 
     @property
     def size(self):
@@ -30,9 +33,9 @@ class Square(rectangle.Rectangle):
         if len(args) >= 2:
             args.insert(2, args[1])
         if kwargs.get('size'):
-           size = kwargs.pop('size')
-           kwargs['width'] = size
-           kwargs['height'] = size
+            size = kwargs.pop('size')
+            kwargs['width'] = size
+            kwargs['height'] = size
         super().update(*args, **kwargs)
 
     def to_dictionary(self):

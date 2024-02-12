@@ -27,7 +27,7 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """Return the json string representation of the args list_dictionaries"""
+        """Return json string representation of the args list_dictionaries"""
         if list_dictionaries:
             return json.dumps(list_dictionaries)
         return "[]"

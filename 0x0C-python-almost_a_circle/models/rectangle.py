@@ -94,7 +94,10 @@ class Rectangle(base.Base):
     def __str__(self):
         """Return the string representation of the current occurence"""
         return "[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}".format(self.id,
-                self.x, self.y, self.width, self.height)
+                                                                 self.x,
+                                                                 self.y,
+                                                                 self.width,
+                                                                 self.height)
 
     def update(self, *args, **kwargs):
         """Update the current rectangle with new attr values"""
