@@ -15,3 +15,7 @@ if __name__ == "__main__":
 
     with open("Rectangle.json", "r") as file:
         print(file.read())
+
+    print('\n------------------\n')
+    with open("Square.json", "r") as f:
+        print(f.read())

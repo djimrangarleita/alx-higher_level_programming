@@ -37,9 +37,9 @@ class Base:
         """List of instances of base type"""
         filename = cls.__name__ + '.json'
         list_dicts = []
-        for obj in list_objs:
-            list_dicts.append(cls.to_dictionary(obj))
-
+        if list_objs:
+            for obj in list_objs:
+                list_dicts.append(cls.to_dictionary(obj))
         json_data = cls.to_json_string(list_dicts)
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(json_data)
@@ -78,7 +78,7 @@ class Base:
         filename = cls.__name__ + '.csv'
         if not list_objs:
             with open(filename, 'w', encoding='utf-8') as f:
-                f.write('')
+                f.write('[]')
             return
         if cls.__name__ == 'Rectangle':
             fields = ['id', 'width', 'height', 'x', 'y']
