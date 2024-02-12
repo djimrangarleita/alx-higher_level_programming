@@ -204,3 +204,22 @@ Update the class Base by adding the class method `def load_from_file(cls):` that
 - If the file doesn't exist, return an empty list
 - Otherwise, return a list of instances - the type of these instances depends on `cls` (current class using this method)
 - You must use the `from_json_string` and `create` methods (implemented previously)
+
+### Task 20: JSON ok, but CSV? 
+
+Update the class `Base` by adding the class methods `def save_to_file_csv(cls, list_objs):` and `def load_from_file_csv(cls):` that serializes and deserializes in CSV:
+
+- The filename must be: `<Class name>.csv` - example: `Rectangle.csv`
+- Has the same behavior as the JSON serialization/deserialization
+- Format of the CSV:
+	- Rectangle: `<id>,<width>,<height>,<x>,<y>`
+	- Square: `<id>,<size>,<x>,<y>`
+
+### Task 21: Let's draw it
+
+Update the class `Base` by adding the static method `def draw(list_rectangles, list_squares):` that opens a window and draws all the `Rectangles` and `Squares`:
+
+- You must use the [Turtle graphics module](https://docs.python.org/3.0/library/turtle.html)
+- To install it: `sudo apt-get install python3-tk`
+- To make the GUI available outside your vagrant machine, add this line in your Vagrantfile: `config.ssh.forward_x11 = true`
+- No constraints for color, shape etc... be creative!

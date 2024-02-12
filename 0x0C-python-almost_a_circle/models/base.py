@@ -4,6 +4,7 @@ Module for the class Base, used to manage all the ids this class
 is used by all other classes in the project
 """
 import json
+import csv
 
 
 class Base:
@@ -70,3 +71,43 @@ class Base:
                 return list_instances
         except FileNotFoundError:
             return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Save object to csv file"""
+        filename = cls.__name__ + '.csv'
+        if not list_objs:
+            with open(filename, 'w', encoding='utf-8') as f:
+                f.write('')
+            return
+        if cls.__name__ == 'Rectangle':
+            fields = ['id', 'width', 'height', 'x', 'y']
+        else:
+            fields = ['id', 'size', 'x', 'y']
+        list_dict = []
+        for obj in list_objs:
+            list_dict.append(cls.to_dictionary(obj))
+        with open(filename, 'w', encoding='utf-8') as csvfile:
+            dwriter = csv.DictWriter(csvfile, fieldnames=fields)
+            dwriter.writeheader()
+            dwriter.writerows(list_dict)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Create new instances from a csv file"""
+        filename = cls.__name__ + '.csv'
+        try:
+            with open(filename, 'r', encoding='utf-8') as csvfile:
+                csvreader = csv.DictReader(csvfile)
+                list_instances = []
+                for row in csvreader:
+                    row = {key: int(val) for key, val in row.items()}
+                    list_instances.append(cls.create(**row))
+                return list_instances
+        except FileNotFoundError:
+            return []
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Draw rectangles and windows"""
+        pass

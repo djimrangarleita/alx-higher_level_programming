@@ -73,3 +73,23 @@ class TestBase(unittest.TestCase):
         self.assertIsNot(r1, r2)
         self.assertIsInstance(s2, Square)
         self.assertIsNot(s1, s2)
+
+    def test_load_from_file_without_file(self):
+        """Test that load form file returns an empty list if no file"""
+        pass
+
+    def test_save_file_csv_empty(self):
+        """Test that empty csv file is create when arg is None or []"""
+        pass
+
+    def test_save_file_csv(self):
+        """Test csv file is created file correct content"""
+        pass
+
+    def test_load_from_file_csv_empty(self):
+        """Test empty list is returned when no csv or empty csv file"""
+        pass
+
+    def test_load_from_file_csv(self):
+        """Test new instances are created when csv file is given"""
+        pass
