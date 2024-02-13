@@ -13,10 +13,14 @@ if __name__ == "__main__":
     print(r1 is r2)
     print(r1 == r2)
 
-    s1 = Square(3, 5, 1)
+    s1 = Square(3, 5, 1, 12)
     s1_dictionary = s1.to_dictionary()
     s2 = Square.create(**s1_dictionary)
     print(s1)
     print(s2)
     print(s1 is s2)
     print(s1 == s2)
+
+    print('\n-----------------------\n')
+    dt = dict()
+    r2 = Rectangle.create(**dt)

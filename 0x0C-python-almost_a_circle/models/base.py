@@ -54,6 +54,8 @@ class Base:
     @classmethod
     def create(cls, **dictionary):
         """Create new instance of class cls"""
+        if not dictionary:
+            raise ValueError('dictionary cannot be empty')
         new_instance = cls(10, 10)
         new_instance.update(**dictionary)
         return new_instance

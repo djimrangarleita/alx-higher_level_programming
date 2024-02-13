@@ -94,6 +94,38 @@ class TestBase(unittest.TestCase):
         self.assertIsInstance(s2, Square)
         self.assertIsNot(s1, s2)
 
+    def test_create_method_return_new_rectangle(self):
+        """Test that the methods creates a new instance with all values
+        set and correct
+        """
+        r1 = Rectangle(3, 5, 1)
+        r1_dict = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dict)
+        self.assertEqual(r2.id, r1.id)
+        self.assertEqual(r2.width, 3)
+        self.assertEqual(r2.height, 5)
+        self.assertEqual(r2.x, 1)
+        self.assertEqual(r2.y, 0)
+
+    def test_create_method_return_new_square(self):
+        """Test that the methods creates a new instance of square with
+        all values set and correct
+        """
+        s1 = Square(3)
+        s1_dict = s1.to_dictionary()
+        s2 = Square.create(**s1_dict)
+        self.assertEqual(s2.id, s1.id)
+        self.assertEqual(s2.size, 3)
+        self.assertEqual(s2.x, 0)
+        self.assertEqual(s2.y, 0)
+
+    def test_create_with_empty_dictionary_raises_exception(self):
+        """Test that an exception is raised when create is called with an
+        empty dictionary
+        """
+        with self.assertRaises(ValueError):
+            Square.create(**{})
+
     def test_load_from_file_without_file(self):
         """Test that load form file returns an empty list if no file"""
         try:
