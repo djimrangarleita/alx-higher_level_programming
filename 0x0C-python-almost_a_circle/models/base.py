@@ -56,7 +56,10 @@ class Base:
         """Create new instance of class cls"""
         if not dictionary:
             raise ValueError('dictionary cannot be empty')
-        new_instance = cls(10, 10)
+        if cls.__name__ == 'Rectangle':
+            new_instance = cls(10, 10)
+        else:
+            new_instance = cls(10)
         new_instance.update(**dictionary)
         return new_instance
 

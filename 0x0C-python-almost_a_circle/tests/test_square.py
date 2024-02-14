@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """Module used to test the Square class"""
-import unittest
 from models.square import Square
+from unittest.mock import patch
+from io import StringIO
+import unittest
 
 
 class TestSquare(unittest.TestCase):
@@ -20,7 +22,7 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s1.area(), 25)
         self.assertEqual(s2.area(), 4)
 
-    def test_size_of_a_square(self):
+    def test_size_of_a_square_with_valid_data(self):
         """Test the size of a Square"""
         s1 = Square(5)
         s2 = Square(2, 2)
@@ -28,6 +30,47 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s2.size, 2)
         s1.size = 8
         self.assertEqual(s1.size, 8)
+
+    def test_size_of_a_square_with_invalid_data(self):
+        """Test that invalid Square size raises exception"""
+        with self.assertRaises(TypeError):
+            Square('5')
+        with self.assertRaises(ValueError):
+            Square(-10)
+        with self.assertRaises(ValueError):
+            Square(0)
+
+    def test_x_of_a_square_with_valid_data(self):
+        """Test the x arg of a Square"""
+        s1 = Square(5, 2)
+        s2 = Square(2, 0)
+        s3 = Square(2)
+        self.assertEqual(s1.x, 2)
+        self.assertEqual(s2.x, 0)
+        self.assertEqual(s3.x, 0)
+
+    def test_x_of_a_square_with_invalid_data(self):
+        """Test that invalid Square x raises exception"""
+        with self.assertRaises(TypeError):
+            Square(1, '5')
+        with self.assertRaises(ValueError):
+            Square(3, -10)
+
+    def test_y_of_a_square_with_valid_data(self):
+        """Test the y arg of a Square"""
+        s1 = Square(5, 2)
+        s2 = Square(2, 0, 9)
+        s3 = Square(2, 10, 19)
+        self.assertEqual(s1.y, 0)
+        self.assertEqual(s2.y, 9)
+        self.assertEqual(s3.y, 19)
+
+    def test_y_of_a_square_with_invalid_data(self):
+        """Test that invalid Square y raises exception"""
+        with self.assertRaises(TypeError):
+            Square(1, 5, '7')
+        with self.assertRaises(ValueError):
+            Square(3, 10, -9)
 
     def test_update_square_attrs_with_args(self):
         """Test that update function work propertly for square"""
@@ -66,3 +109,44 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(sdict.get('x'), 20)
         self.assertEqual(sdict.get('y'), 10)
         self.assertEqual(sdict.get('id'), 29)
+
+    def test_save_to_file_class_method(self):
+        """Test that a json file is created"""
+        s1 = Square(10)
+        s2 = Square(2, 4, 0, 2)
+        Square.save_to_file([s1, s2])
+        with open('Square.json', 'r', encoding='utf-8') as f:
+            data = f.read()
+        self.assertIsInstance(data, str)
+        self.assertIsNot(data, '')
+
+    def test_save_to_file_without_data(self):
+        """Test that a json file is created with empty array"""
+        Square.save_to_file([])
+        with open('Square.json', 'r', encoding='utf-8') as f:
+            data = f.read()
+        self.assertIsInstance(data, str)
+        self.assertEqual(data, '[]')
+        Square.save_to_file(None)
+        with open('Square.json', 'r', encoding='utf-8') as f:
+            data = f.read()
+        self.assertIsInstance(data, str)
+        self.assertEqual(data, '[]')
+
+    def test_display_square_according_to_dimension(self):
+        """Test that rectangle get displayed according to dimensions"""
+        s1 = Square(2)
+        s2 = Square(2, 2)
+        s3 = Square(2, 2, 1)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            s1.display()
+            self.assertEqual(fake_out.getvalue(),
+                             '##\n##\n')
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            s2.display()
+            self.assertEqual(fake_out.getvalue(),
+                             '  ##\n  ##\n')
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            s3.display()
+            self.assertEqual(fake_out.getvalue(),
+                             '\n  ##\n  ##\n')

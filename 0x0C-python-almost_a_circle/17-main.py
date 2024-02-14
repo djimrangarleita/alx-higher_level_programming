@@ -22,5 +22,11 @@ if __name__ == "__main__":
     print(s1 == s2)
 
     print('\n-----------------------\n')
-    dt = dict()
-    r2 = Rectangle.create(**dt)
+
+    s1 = Square(3)
+    s1_dictionary = s1.to_dictionary()
+    s2 = Square.create(**s1_dictionary)
+    print(s1)
+    print(s2)
+    print(s1 is s2)
+    print(s1 == s2)

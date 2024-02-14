@@ -30,8 +30,9 @@ class TestBase(unittest.TestCase):
         base2 = Base()
         base3 = Base()
         self.assertIsInstance(base1.id, int)
-        self.assertIsInstance(base2.id, int)
-        self.assertIsInstance(base3.id, int)
+        self.assertGreater(base1.id, 0)
+        self.assertEqual(base2.id, base1.id + 1)
+        self.assertEqual(base3.id, base2.id + 1)
 
     def test_return_type_of_to_json_string_method(self):
         """Test that the static method to_json_string works properly"""
@@ -50,16 +51,6 @@ class TestBase(unittest.TestCase):
         self.assertEqual(e_str, "[]")
         self.assertEqual(n_str, "[]")
         self.assertEqual(json_str, '[{"id": 89, "width": 25}]')
-
-    def test_save_to_file_class_method(self):
-        """Test that a json file is created"""
-        r1 = Rectangle(10, 7, 2, 8, 1)
-        r2 = Rectangle(2, 4, 0, 0, 2)
-        Rectangle.save_to_file([r1, r2])
-        with open('Rectangle.json', 'r', encoding='utf-8') as f:
-            data = f.read()
-        self.assertIsInstance(data, str)
-        self.assertIsNot(data, '')
 
     def test_from_json_string_return_type(self):
         """Test that the method can return a list of valid dicts

@@ -3,6 +3,8 @@
 Module used to test the rectangle class
 """
 from models.rectangle import Rectangle
+from io import StringIO
+from unittest.mock import patch
 import unittest
 
 
@@ -57,6 +59,7 @@ class TestRectangle(unittest.TestCase):
         rec2 = Rectangle(12, 3, 50, 0, 9)
         self.assertEqual(rec1.x, 0)
         self.assertEqual(rec2.x, 50)
+        self.assertEqual(Rectangle(10, 4, 0).x, 0)
 
     def test_instantiation_with_invalid_x(self):
         """Test instantiation with invalid width should raise exception"""
@@ -64,7 +67,6 @@ class TestRectangle(unittest.TestCase):
             Rectangle(10, 3, '12')
         with self.assertRaises(ValueError):
             Rectangle(10, 5, -1)
-        self.assertEqual(Rectangle(10, 4, 0).x, 0)
 
     def test_instantiation_with_valid_y(self):
         """Test instantiation with y"""
@@ -72,6 +74,7 @@ class TestRectangle(unittest.TestCase):
         rec2 = Rectangle(12, 3, 5, 50, 9)
         self.assertEqual(rec1.y, 0)
         self.assertEqual(rec2.y, 50)
+        self.assertEqual(Rectangle(10, 4, 2, 0).y, 0)
 
     def test_instantiation_with_invalid_y(self):
         """Test instantiation with invalid y should raise exception"""
@@ -79,7 +82,29 @@ class TestRectangle(unittest.TestCase):
             Rectangle(10, 3, 12, '10')
         with self.assertRaises(ValueError):
             Rectangle(10, 5, 1, -1)
-        self.assertEqual(Rectangle(10, 4, 2, 0).y, 0)
+
+    def test_save_to_file_class_method(self):
+        """Test that a json file is created"""
+        r1 = Rectangle(10, 7, 2, 8, 1)
+        r2 = Rectangle(2, 4, 0, 0, 2)
+        Rectangle.save_to_file([r1, r2])
+        with open('Rectangle.json', 'r', encoding='utf-8') as f:
+            data = f.read()
+        self.assertIsInstance(data, str)
+        self.assertIsNot(data, '')
+
+    def test_save_to_file_without_data(self):
+        """Test that a json file is created with empty array"""
+        Rectangle.save_to_file([])
+        with open('Rectangle.json', 'r', encoding='utf-8') as f:
+            data = f.read()
+        self.assertIsInstance(data, str)
+        self.assertEqual(data, '[]')
+        Rectangle.save_to_file(None)
+        with open('Rectangle.json', 'r', encoding='utf-8') as f:
+            data = f.read()
+        self.assertIsInstance(data, str)
+        self.assertEqual(data, '[]')
 
     def test_area_of_rectangle(self):
         """Test that area function works properly"""
@@ -88,9 +113,23 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(rec1.area(), 30)
         self.assertEqual(rec2.area(), 10)
 
-    def test_rec_is_displayed_according_to_dimension(self):
-        # please implement me
-        pass
+    def test_display_rec_according_to_dimension(self):
+        """Test that rectangle get displayed according to dimensions"""
+        r1 = Rectangle(2, 2)
+        r2 = Rectangle(2, 2, 1)
+        r3 = Rectangle(2, 2, 1, 2)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            r1.display()
+            self.assertEqual(fake_out.getvalue(),
+                             '##\n##\n')
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            r2.display()
+            self.assertEqual(fake_out.getvalue(),
+                             ' ##\n ##\n')
+        with patch('sys.stdout', new=StringIO()) as fake_out:
+            r3.display()
+            self.assertEqual(fake_out.getvalue(),
+                             '\n\n ##\n ##\n')
 
     def test_str_function_for_rectangle(self):
         """Test the string representation of a rectangle"""
