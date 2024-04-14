@@ -2,4 +2,4 @@
 a.out
 outputs/
 __pycache__/
-
+venv/
