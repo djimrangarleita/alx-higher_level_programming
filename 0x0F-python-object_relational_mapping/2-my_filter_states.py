@@ -18,7 +18,7 @@ def get_states_with_condition():
 
     cur = conn.cursor()
     cur.execute("SELECT * FROM states "
-                "WHERE name = '{}' ORDER BY id ASC".format(name))
+                "WHERE BINARY name = '{}' ORDER BY id ASC".format(name))
     query_rows = cur.fetchall()
 
     for row in query_rows:
