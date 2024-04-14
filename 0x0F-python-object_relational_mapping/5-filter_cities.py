@@ -8,6 +8,8 @@ import sys
 
 def get_all_cities_by_state_name():
     """Read and list of cities in db"""
+    if len(sys.argv) != 5:
+        return
     uname = sys.argv[1]
     password = sys.argv[2]
     dbname = sys.argv[3]
