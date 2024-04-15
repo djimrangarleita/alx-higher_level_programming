@@ -19,13 +19,14 @@ def get_all_cities_by_state_name():
                            passwd=password, db=dbname, charset="utf8")
 
     cur = conn.cursor()
-    cur.execute("SELECT cities.id, cities.name, states.name AS state_name\
-            FROM cities JOIN states ON cities.state_id = states.id\
+    cur.execute("SELECT cities.name  AS city_name FROM cities\
+            JOIN states ON cities.state_id = states.id\
             WHERE BINARY states.name = %s", (state_name,))
-    query_rows = cur.fetchall()
+    cities = [row[0] for row in cur.fetchall()]
+    city_string = ", ".join(cities)
 
-    for row in query_rows:
-        print(row)
+    print(city_string)
+
     cur.close()
     conn.close()
 
