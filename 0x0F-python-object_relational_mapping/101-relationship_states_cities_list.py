@@ -3,10 +3,10 @@
 Start link class to table in database
 """
 import sys
-from relationship_state import Base, State
-from relationship_city import City
 from sqlalchemy import (create_engine)
 from sqlalchemy.orm import sessionmaker
+from relationship_state import Base, State
+from relationship_city import City
 
 
 def list_relationship():
@@ -19,13 +19,11 @@ def list_relationship():
                                    sys.argv[3]),
                            pool_pre_ping=True)
 
-    Base.metadata.create_all(engine)
-
     Session = sessionmaker(bind=engine)
     session = Session()
 
     for state in session.query(State).order_by(State.id):
-        print(state.id, state.name, sep=':')
+        print(state.id, state.name, sep=': ')
         for city in state.cities:
             print('   {}: {}'.format(city.id, city.name))
 
