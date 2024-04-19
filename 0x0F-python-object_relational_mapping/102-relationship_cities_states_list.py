@@ -22,11 +22,9 @@ def list_relationship():
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    states = session.query(State).order_by(State.id)
-    for state in states:
-        print('{}: {}'.format(state.id, state.name))
-        for city in state.cities:
-            print('\t{}: {}'.format(city.id, city.name))
+    cities = session.query(City).order_by(City.id)
+    for city in cities:
+        print('{}: {} -> {}'.format(city.id, city.name, city.state.name))
 
 
 if __name__ == "__main__":
