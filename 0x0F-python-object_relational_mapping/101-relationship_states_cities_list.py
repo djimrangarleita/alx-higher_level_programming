@@ -19,11 +19,12 @@ def list_relationship():
                                    sys.argv[3]),
                            pool_pre_ping=True)
 
+    Base.metadata.create_all(engine)
+
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    states = session.query(State).outerjoin(City).order_by(State.id,
-                                                           City.id).all()
+    states = session.query(State).order_by(State.id)
     for state in states:
         print('{}: {}'.format(state.id, state.name))
         for city in state.cities:
