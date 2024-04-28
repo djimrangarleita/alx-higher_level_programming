@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Change me"""
+"""Print request header, key X-Request-Id"""
 import urllib.request
 import sys
 
