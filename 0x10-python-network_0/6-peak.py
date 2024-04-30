@@ -15,4 +15,4 @@ def find_peak(ints):
         if ints[i] > ints[i - 1] and ints[i + 1] < ints[i]:
             return ints[i]
         i += 1
-    return ints[0]
+    return ints[-1]
