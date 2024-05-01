@@ -2,6 +2,7 @@
 """Print response or custom message"""
 
 import requests
+import json
 import sys
 
 
@@ -12,11 +13,11 @@ def print_response():
     r = requests.post('http://0.0.0.0:5000/search_user', data=payload)
     try:
         r = r.json()
-        if not r:
+        if r:
+            print('[{}] {}'.format(r.get('id'), r.get('name')))
+        else:
             print('No result')
-            return
-        print('[{}] {}'.format(r.get('id'), r.get('name')))
-    except requests.exceptions.JSONDecodeError:
+    except json.decoder.JSONDecodeError:
         print('Not a valid JSON')
 
 
