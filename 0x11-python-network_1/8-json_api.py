@@ -6,8 +6,13 @@ import sys
 
 
 def print_response():
+    q_str = ''
+    if len(sys.argv) > 1:
+        q_str = sys.argv[1]
     r = requests.post('http://0.0.0.0:5000/search_user',
-                      params={'q': sys.argv[1]})
+                      params={'q': q_str})
+    # r = requests.get('https://www.mossosouk.com/api/product/',
+    #                  params={'q': sys.argv[1]})
     try:
         r = r.json()
         if not r:
@@ -19,4 +24,4 @@ def print_response():
 
 
 if __name__ == '__main__':
-    print_request()
+    print_response()
