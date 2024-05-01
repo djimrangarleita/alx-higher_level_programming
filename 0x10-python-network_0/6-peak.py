@@ -12,7 +12,7 @@ def find_peak(ints):
         return ints[0]
     i = 1
     while (i < len(ints) - 1):
-        if ints[i] > ints[i - 1] and ints[i + 1] < ints[i]:
+        if ints[i] >= ints[i - 1] and ints[i] >= ints[i + 1]:
             return ints[i]
         i += 1
     return ints[-1]
