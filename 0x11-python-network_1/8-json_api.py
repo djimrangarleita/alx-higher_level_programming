@@ -16,7 +16,7 @@ def print_response():
             print('No result')
             return
         print('[{}] {}'.format(r.get('id'), r.get('name')))
-    except json.decoder.JSONDecodeError:
+    except requests.exceptions.JSONDecodeError:
         print('Not a valid JSON')
 
 
