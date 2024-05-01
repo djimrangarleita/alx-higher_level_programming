@@ -11,7 +11,7 @@ def print_request():
             content = response.read()
             print(content.decode('utf-8'))
     except urllib.error.HTTPError as e:
-        print('Error code: ', e.code)
+        print('Error code:', e.code)
 
 
 if __name__ == '__main__':
