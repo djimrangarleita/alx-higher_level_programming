@@ -11,7 +11,7 @@ def request_commit():
     r = requests.get(r_url)
     r = r.json()
     i = 0
-    while i < 10:
+    while i < len(r) and i < 10:
         print('{}: {}'.format(r[i].get('sha'),
               r[i]['commit']['author']['name']))
         i += 1
