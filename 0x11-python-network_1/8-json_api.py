@@ -6,10 +6,10 @@ import sys
 
 
 def print_response():
-    q_str = ''
+    payload = {}
     if len(sys.argv) > 1:
-        q_str = sys.argv[1]
-    r = requests.post('http://0.0.0.0:5000/search_user', data={'q': q_str})
+        payload['q'] = sys.argv[1]
+    r = requests.post('http://0.0.0.0:5000/search_user', data=payload)
     try:
         r = r.json()
         if not r:
