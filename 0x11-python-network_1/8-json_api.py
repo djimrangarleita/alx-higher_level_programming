@@ -2,7 +2,6 @@
 """Print response or custom message"""
 
 import requests
-import json
 import sys
 
 
@@ -17,7 +16,7 @@ def print_response():
             print('[{}] {}'.format(r.get('id'), r.get('name')))
         else:
             print('No result')
-    except json.decoder.JSONDecodeError:
+    except ValueError:
         print('Not a valid JSON')
 
 
