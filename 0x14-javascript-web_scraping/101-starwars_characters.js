@@ -2,20 +2,20 @@
 const request = require('request');
 const { argv } = require('node:process');
 
-const url = argv[2];
+const url = `https://swapi-api.alx-tools.com/api/films/${argv[2]}`;
 
 request(url, (err, response, body) => {
   if (response) {
-    let characterCount = 0;
-    const films = JSON.parse(body);
-    films.results.forEach(result => {
-      result.characters.forEach(character => {
-        if (character.includes('/18/')) {
-          characterCount++;
+    const movie = JSON.parse(body);
+    movie.characters.forEach(character => {
+      request(character, (err, charResponse, charBody) => {
+        if (response) {
+          console.log(JSON.parse(charBody).name);
+        } else {
+          console.error(err);
         }
       });
     });
-    console.log(characterCount);
   } else {
     console.error(err);
   }
