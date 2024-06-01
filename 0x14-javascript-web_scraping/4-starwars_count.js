@@ -1,7 +1,8 @@
 #!/usr/bin/node
 const request = require('request');
+const { argv } = require('node:process');
 
-const url = 'https://swapi-api.alx-tools.com/api/films/';
+const url = argv[2];
 
 request(url, (err, response, body) => {
   if (response) {
@@ -9,7 +10,7 @@ request(url, (err, response, body) => {
     const films = JSON.parse(body);
     films.results.forEach(result => {
       result.characters.forEach(character => {
-        if (character.includes('18')) {
+        if (character.includes('/18/')) {
           characterCount++;
         }
       });
